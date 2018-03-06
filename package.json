@@ -37,6 +37,7 @@
     "babel-eslint": "^8.1.2",
     "buffer-shims": "^1.0.0",
     "eslint": "^4.14.0",
+    "eye.js": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-react": "^3.1.0",
     "gulp-rename": "^1.2.2",
