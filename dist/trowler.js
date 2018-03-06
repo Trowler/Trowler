@@ -20,6 +20,10 @@ class Trowler {
 			})
 		});
 	}
+	constructor(name, url) {
+		this.name = name;
+		this.url = url;
+	}
 }
 // Browserify / Node.js
 if (typeof define === "function" && define.amd) {
