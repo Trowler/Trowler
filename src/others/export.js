@@ -1,26 +1,3 @@
-/*============================*
-
-	Copyright © 2018 Arthur Guiot. All right reserved.
-
- *============================*/
-
-
-
-class Trowler {
-	clone(url, name) {
-		const { spawn } = require("child_process");
-		return new Promise((resolve, reject) => {
-			const git = spawn("git", ["clone", url, name])
-			git.on( 'close', code => {
-				if (code == 0) {
-					resolve(name)
-				} else {
-					reject(`Error while cloning, here is the code: ${code}`)
-				}
-			})
-		});
-	}
-}
 // Browserify / Node.js
 if (typeof define === "function" && define.amd) {
   define(() => new Trowler());
