@@ -1,0 +1,46 @@
+{
+  "name": "trowler",
+  "version": "0.0.1",
+  "description": "A universal scaffolding tool",
+  "main": "dist/trowler.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "run": "npm test",
+    "build": "npm test",
+    "test": "npm run gulp && npm run prettier && npm run lint && npm run eye && exit 0",
+    "gulp": "gulp",
+    "prettier": "prettier \"dist/**/*.js\" --write",
+    "lint": "./node_modules/.bin/eslint dist/trowler.js --fix",
+    "eye": "eye"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trowler/Trowler.git"
+  },
+  "keywords": [
+    "scaffolding",
+    "generator",
+    "boilerplate",
+    "start",
+    "repository",
+    "project"
+  ],
+  "author": "Arthur Guiot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Trowler/Trowler/issues"
+  },
+  "homepage": "https://github.com/Trowler/Trowler#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "buffer-shims": "^1.0.0",
+    "eslint": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-react": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rigger": "^0.5.8",
+    "prettier": "1.9.2"
+  }
+}
