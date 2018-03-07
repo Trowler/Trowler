@@ -43,5 +43,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-rigger": "^0.5.8",
     "prettier": "1.9.2"
+  },
+  "dependencies": {
+    "prompts": "^0.1.5"
   }
 }
