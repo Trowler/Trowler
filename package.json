@@ -45,6 +45,7 @@
     "prettier": "1.9.2"
   },
   "dependencies": {
-    "prompts": "^0.1.5"
+    "prompts": "^0.1.5",
+    "request": "^2.83.0"
   }
 }
