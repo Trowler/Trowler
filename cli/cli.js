@@ -19,7 +19,14 @@ const prompts = require("prompts");
 
 	trowler.name = answers.name
 	trowler.url = answers.url
-
-	// trowler.generate()
+	try {
+		trowler.generate().then(res => {
+			console.log("Done!")
+		}).catch(e => {
+			console.log(`Oups! Something wrong happended. Here is the debug code:\n ${e}`)
+		})
+	} catch(e) {
+		console.log(`Oups! Something wrong happended. Here is the debug code:\n ${e}`)
+	}
 
 })()
