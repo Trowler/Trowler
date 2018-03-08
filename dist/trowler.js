@@ -22,34 +22,57 @@ class Trowler {
 	}
 	constructor(name, url) {
 		this.name = name;
-		this.url = url;
+		if (/github.com/.test(url)) {
+			this.url = url;
+		} else {
+			this.url = `https://github.com/${url}`;
+		}
+	}
+	generate() {
+		if (/github.com/.test(this.url)) {
+			this.url = this.url;
+		} else {
+			this.url = `https://github.com/${this.url}`;
+		}
+		console.log(this.url)
+		return new Promise((resolve, reject) => {
+			this.validate().then(valid => {
+				if(valid) {
+					this.clone(this.url, this.name).then(result => resolve(result));
+				} else {
+					reject("Wrong parameters,\nthe folder name might already exist, or you gived a wrong generator.");
+				}
+			})
+		});
 	}
 	validate() {
-	    // URL
-	    function exists(url) {
-			new Promise((resolve, reject) => {
-				const http = require("http");
-		        const url = require("url");
+	    return new Promise((resolve, reject) => {
+	        // URL
+	        function exists(URL, callback) {
+	            const request = require("request")
+	            request({
+	                url: URL,
+	                method: 'HEAD'
+	            }, (err, res) => {
+	                if (err) return callback(false);
+	                callback(/4\d\d/.test(res.statusCode) === false)
+	            })
+	        }
 	
-		        const options = {
-		            method: "HEAD",
-		            host: url.parse(url).host,
-		            port: 80,
-		            path: url.parse(url).pathname
-		        }
-	
-		        const req = http.request(options, r => {
-		            resolve(r.statusCode == 200);
-		        })
-				req.end()
-			});
-	    }
-		const url = exists(this.url).then(data => data)
-	
-		// NAME
-		const fs = require("fs");
-		const name = fs.existsSync(this.name);
-		return url && name;
+	        function existsPromise(url) {
+	            return new Promise(function(resolve, reject) {
+	                exists(url, r => {
+	                    resolve(r)
+	                })
+	            });
+	        }
+	        existsPromise(this.url).then(url => {
+	            // NAME
+	            const fs = require("fs");
+	            const name = fs.existsSync(`${process.cwd()}/${this.name}`);
+	            resolve(url && !name)
+	        });
+	    })
 	}
 }
 // Browserify / Node.js
