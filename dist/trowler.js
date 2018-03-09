@@ -28,6 +28,15 @@ class Trowler {
 			this.url = `https://github.com/${url}`;
 		}
 	}
+	customize() {
+		const fs = require("fs");
+		if (fs.existsSync(`${this.name}/_trowler.json`)) {
+			const buff = fs.readFileSync(`${this.name}/_trowler.json`);
+			const json = JSON.stringify(buff.toString("utf8"));
+			const { execSync } = require("child_process");
+			execSync(json.testCommand);
+		}
+	}
 	generate() {
 		if (/github.com/.test(this.url)) {
 			this.url = this.url;
@@ -38,7 +47,10 @@ class Trowler {
 		return new Promise((resolve, reject) => {
 			this.validate().then(valid => {
 				if(valid) {
-					this.clone(this.url, this.name).then(result => resolve(result));
+					this.clone(this.url, this.name).then(result => {
+						this.customize()
+						resolve(result)
+					});
 				} else {
 					reject("Wrong parameters,\nthe folder name might already exist, or you gived a wrong generator.");
 				}

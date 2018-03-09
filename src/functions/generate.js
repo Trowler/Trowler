@@ -8,7 +8,10 @@ generate() {
 	return new Promise((resolve, reject) => {
 		this.validate().then(valid => {
 			if(valid) {
-				this.clone(this.url, this.name).then(result => resolve(result));
+				this.clone(this.url, this.name).then(result => {
+					this.customize()
+					resolve(result)
+				});
 			} else {
 				reject("Wrong parameters,\nthe folder name might already exist, or you gived a wrong generator.");
 			}
