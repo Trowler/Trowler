@@ -19,7 +19,8 @@ install:
 
 script:
   - npm run test
-  - pkg . -b -d
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pkg . -b -d -t node9-macos-x64        ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pkg . -b -d -t node9-linux-x64        ; fi
 
 notifications:
   email:
