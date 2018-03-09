@@ -15,9 +15,11 @@ before_install:
 
 install:
   - npm install
+  - npm i -g pkg
 
 script:
   - npm run test
+  - pkg . -b -d
 
 notifications:
   email:
