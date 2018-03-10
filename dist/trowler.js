@@ -43,7 +43,7 @@ class Trowler {
 		} else {
 			this.url = `https://github.com/${this.url}`;
 		}
-		console.log(this.url)
+		console.log(`Cloning ${this.url} to ${this.name}...`)
 		return new Promise((resolve, reject) => {
 			this.validate().then(valid => {
 				if(valid) {
