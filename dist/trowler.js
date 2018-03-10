@@ -34,7 +34,8 @@ class Trowler {
 			const buff = fs.readFileSync(`${this.name}/_trowler.json`);
 			const json = JSON.stringify(buff.toString("utf8"));
 			const { execSync } = require("child_process");
-			execSync(json.testCommand);
+			execSync(`cd ${this.name} && ${json.testCommand}`);
+			fs.unlinkSync(`${this.name}/_trowler.json`)
 		}
 	}
 	generate() {
