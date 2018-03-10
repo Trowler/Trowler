@@ -9,7 +9,8 @@ generate() {
 		this.validate().then(valid => {
 			if(valid) {
 				this.clone(this.url, this.name).then(result => {
-					this.customize()
+					this.customize();
+					this.git()
 					resolve(result)
 				});
 			} else {

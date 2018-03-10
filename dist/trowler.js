@@ -48,7 +48,8 @@ class Trowler {
 			this.validate().then(valid => {
 				if(valid) {
 					this.clone(this.url, this.name).then(result => {
-						this.customize()
+						this.customize();
+						this.git()
 						resolve(result)
 					});
 				} else {
@@ -56,6 +57,14 @@ class Trowler {
 				}
 			})
 		});
+	}
+	git() {
+		const { execSync } = require("child_process");
+		if (!/^win/.test(process.platform)) {
+			execSync(`cd ${this.name} && rm -rf .git && git init`);
+		} else {
+			console.log("[Trowler] Please delete '.git' folder in your new project folder, and run 'git init'")
+		}
 	}
 	validate() {
 	    return new Promise((resolve, reject) => {
