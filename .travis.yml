@@ -15,12 +15,12 @@ before_install:
 
 install:
   - npm install
-  - npm i -g pkg
+  - npm i -g nexe
 
 script:
   - npm run test
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pkg . -d -t node9-macos-x64        ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pkg . -d -t node9-linux-x64        ; fi
+  # nexe
+  - nexe ./cli/cli.js -b
 
 notifications:
   email:
