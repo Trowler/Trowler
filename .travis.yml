@@ -15,12 +15,9 @@ before_install:
 
 install:
   - npm install
-  - npm i -g nexe
 
 script:
   - npm run test
-  # nexe
-  - nexe ./cli/cli.js -b
 
 notifications:
   email:
