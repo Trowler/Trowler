@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const trowler = require("../dist/trowler");
 const prompts = require("prompts");
 
