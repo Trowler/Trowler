@@ -8,4 +8,11 @@ gulp.task("src", () => {
     .pipe(rename({ basename: "trowler" }))
     .pipe(gulp.dest("dist"));
 });
-gulp.task("default", ["src"]);
+gulp.task("cli", () => {
+  gulp
+    .src("cli/*.js")
+    .pipe(rigger())
+    .pipe(rename({ basename: "cli" }))
+    .pipe(gulp.dest("dist/cli"));
+});
+gulp.task("default", ["src", "cli"]);
